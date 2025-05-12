@@ -25,6 +25,10 @@ class Gestionescuelas extends Conexion
     {
         $this->escuela_id = $valor;
     }
+    public funciont {
+        
+        $this ->matrícula;
+    }
     // Registrar nueva escuela
     public function registrarescuela()
     {

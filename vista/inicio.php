@@ -1,6 +1,8 @@
-<?php require_once "./accesorios/cabezera.php"; ?>
+<?php require_once "./comunes/cabezera.php"; ?>
 
 <body>
+
+ <?php require_once "./comunes/nav.php"; ?>
     
 <div class="container mt-5">
         <div class="row justify-content-center">

@@ -1,54 +1,62 @@
 <?php require_once "./accesorios/cabezera.php"; ?>
 
 <body>
-    <div class="container" id="advanced-search-form">
-        <h2>Advanced Search</h2>
-        <form>
-            <div class="form-group">
-                <label for="first-name">escuela</label>
-                <input type="text" class="form-control" placeholder="nombre" id="first-name">
-            </div>
-            <div class="form-group">
-                <label for="last-name">direccion</label>
-                <input type="text" class="form-control" placeholder="direccion" id="last-name">
-            </div>
-            <div class="form-group">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" placeholder="Country" id="country">
-            </div>
-            <div class="form-group">
-                <label for="number">Phone number</label>
-                <input type="text" class="form-control" placeholder="Phone number" id="number">
-            </div>
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="text" class="form-control" placeholder="Age" id="age">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="Email" id="email">
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" class="form-control" placeholder="Category" id="category">
-            </div>
-            <div class="form-group">
-                <label for="education">Education</label>
-                <input type="text" class="form-control" placeholder="Education" id="education">
-            </div>
-            <div class="form-group">
-                <label>Gender</label>
-                <div class="radio">
-                    <label class="radio-inline">
-                        <input type="radio" name="optradio">Male</label>
-                    <label class="radio-inline">
-                        <input type="radio" name="optradio">Female</label>
+    
+<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title">Registro de Nueva Escuela</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="formEscuela">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre de la Escuela</label>
+                                <input type="text" class="form-control" id="nombre" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="zona" class="form-label">Zona</label>
+                                    <input type="text" class="form-control" id="zona" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="matricula" class="form-label">Matrícula Total</label>
+                                    <input type="number" class="form-control" id="matricula" min="1" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="director" class="form-label">Contacto</label>
+                                <input type="text" class="form-control" id="director" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono">
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Guardar Escuela</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar Formulario</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span> Search</button>
-        </form>
+        </div>
     </div>
 </body>
 
 </html>
+
+
+

@@ -1,4 +1,4 @@
-<?php require_once "./accesorios/cabezera.php"; ?>
+<?php require_once "./comunes/cabezera.php"; ?>
 
 <body>
 

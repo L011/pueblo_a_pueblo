@@ -20,17 +20,11 @@ $pagina = "inicio";
    $pagina = $_GET['pagina'];  //cambia el valor de $pagina por el obtenido por GET
  }
  
- //pregunta si existe el archivo
- //si existe lo trae, si no escribe pagina en costrucción
- if(is_file("controlador/".$pagina.".php")){ //verifica que exista dentro
- //de la carpeta controlador un archivo php que se llame como el valor de $pagina
-    //si lo encuentra lo trae, el no va, el se trae el archivo
-	//esta es la diferencia con mvc, tu no vas, tu te traes a ti lo que necesitas
-	//el siguiente archivo que debe habrir el estudiante es por ejemplo controlador/principal.php
-	//y ver el contenido
+if (is_file("controlador/".$pagina.".php")) {
+    // si la página existe, la incluimos
     require_once("controlador/".$pagina.".php");
- }
- else{
-    echo "PAGINA EN CONSTRUCCIÓN";
- }
+} else {
+    // si la página no existe, mostramos una página de error 404
+    require_once("controlador/error404.php");
+}
 ?> 

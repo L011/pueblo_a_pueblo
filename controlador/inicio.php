@@ -7,3 +7,4 @@ if (is_file("vista/" . $pagina . ".php")) {
 } else {
     echo "pagina principal en construccion";
 }
+?>

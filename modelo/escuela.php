@@ -82,7 +82,8 @@ class Gestionescuelas extends Conexion
                 ':telefono' => $this->telefono
             ]);
 
-            return "escuela registrada exitosamente";
+            $respuesta = array('mensaje' => 'Escuela registrada exitosamente');
+            echo json_encode($respuesta);
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
@@ -167,3 +168,4 @@ class Gestionescuelas extends Conexion
         }
     }
 }
+?>

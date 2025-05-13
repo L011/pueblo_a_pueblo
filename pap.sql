@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2025 a las 07:28:02
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 13-05-2025 a las 19:56:33
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `categoriaalimento` (
   `categoria_id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,7 @@ CREATE TABLE `detalledistribucion` (
   `escuela_id` int(11) NOT NULL,
   `categoria_id` int(11) NOT NULL,
   `cantidad` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -60,7 +60,7 @@ CREATE TABLE `detalleentrega` (
   `peso` decimal(10,2) NOT NULL,
   `notas` text DEFAULT NULL,
   `estado` tinyint(1) NOT NULL COMMENT 'Disponibilidad para distribución'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE `distribucion` (
   `distribucion_id` int(11) NOT NULL,
   `fecha_distribucion` date NOT NULL,
   `responsable` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE `entrega` (
   `fecha_entrega` date NOT NULL,
   `proveedor` varchar(100) NOT NULL,
   `recibido_por` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE `entregadistribuidor` (
   `fecha_entrega` date NOT NULL,
   `distribuidor` varchar(100) NOT NULL,
   `recibido_por` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -110,8 +110,17 @@ CREATE TABLE `escuela` (
   `escuela_id` int(11) NOT NULL,
   `nombre` varchar(150) NOT NULL,
   `direccion` varchar(200) NOT NULL,
-  `contacto` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `contacto` varchar(100) NOT NULL,
+  `circuito` varchar(100) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `escuela`
+--
+
+INSERT INTO `escuela` (`escuela_id`, `nombre`, `direccion`, `contacto`, `circuito`, `telefono`) VALUES
+(1, 'Carrillo Gonzale', 'Calle 14- YTG', 'njkduu@gmail.com', 'Zonar Sur Juso', '02536565438');
 
 -- --------------------------------------------------------
 
@@ -122,7 +131,7 @@ CREATE TABLE `escuela` (
 CREATE TABLE `inventario` (
   `categoria_id` int(11) NOT NULL,
   `cantidad_total` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -137,7 +146,7 @@ CREATE TABLE `itementrega` (
   `peso` decimal(10,2) NOT NULL,
   `notas` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -150,7 +159,14 @@ CREATE TABLE `matriculaescuela` (
   `escuela_id` int(11) NOT NULL,
   `fecha_registro` date NOT NULL,
   `cantidad_alumnos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `matriculaescuela`
+--
+
+INSERT INTO `matriculaescuela` (`matricula_id`, `escuela_id`, `fecha_registro`, `cantidad_alumnos`) VALUES
+(1, 1, '2025-05-13', 435);
 
 -- --------------------------------------------------------
 
@@ -162,7 +178,7 @@ CREATE TABLE `rubroorganico` (
   `rubro_id` int(11) NOT NULL,
   `tipo` varchar(100) NOT NULL COMMENT 'Ej: Frutas, Verduras, Hortalizas',
   `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -286,7 +302,7 @@ ALTER TABLE `entregadistribuidor`
 -- AUTO_INCREMENT de la tabla `escuela`
 --
 ALTER TABLE `escuela`
-  MODIFY `escuela_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `escuela_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `itementrega`
@@ -298,7 +314,7 @@ ALTER TABLE `itementrega`
 -- AUTO_INCREMENT de la tabla `matriculaescuela`
 --
 ALTER TABLE `matriculaescuela`
-  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `matricula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `rubroorganico`

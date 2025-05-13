@@ -8,10 +8,18 @@ require_once("modelo/" . $pagina . ".php");
 
 if (is_file("vista/" . $pagina . ".php")) {
     $o = new Gestionescuelas();
+ 
+    if(!empty($_POST)){
+         
+        
+        if (isset($_POST['accion'])) {
+            $accion = $_POST['accion'];
+            echo $accion;
+            } else {
+                $accion = "Error"; // o algún otro valor por defecto
+            }
 
-    if (!empty($_POST)) {
-        $accion = $_POST['accion'];
-
+       
         if ($accion == 'consultar') {
             // Consultar todas las escuelas
             $escuelas = $o->consultarescuelas();
@@ -21,7 +29,18 @@ if (is_file("vista/" . $pagina . ".php")) {
             $o->set_escuelaId($_POST['escuela_id']);
             $escuela = $o->obtenerescuelaPorId();
             echo json_encode($escuela);
-        }  elseif ($accion == 'modificar') {
+        }elseif ($accion == 'incluir') {
+             echo "Este es un mensaje de ejemplo.";
+
+            // Registrar nueva escuela
+            $o->set_Nombre($_POST['nombre']);
+            $o->set_direccion($_POST['direccion']);
+            $o->set_circuito($_POST['circuito']);
+            $o->set_Contacto($_POST['contacto']);
+            $o->set_telefono($_POST['telefono']);
+            echo $o->registrarescuela();
+        }
+          elseif ($accion == 'modificar') {
             // Actualizar escuela existente
             $o->set_escuelaId($_POST['escuela_id']);
             $o->set_Nombre($_POST['nombre']);
@@ -34,16 +53,8 @@ if (is_file("vista/" . $pagina . ".php")) {
             // Eliminar escuela
             $o->set_escuelaId($_POST['escuela_id']);
             echo $o->eliminarescuela();
-        } else{
-            echo "Este es un mensaje de ejemplo.";
-
-            // Registrar nueva escuela
-            $o->set_Nombre($_POST['nombre']);
-            $o->set_direccion($_POST['direccion']);
-            $o->set_circuito($_POST['circuito']);
-            $o->set_Contacto($_POST['contacto']);
-            $o->set_telefono($_POST['telefono']);
-            echo $o->registrarescuela();
+        } elseif ($accion == 'Error') {
+            echo "Ocurrio un error";
         }
 
         /* elseif ($accion == 'generarOpciones') {

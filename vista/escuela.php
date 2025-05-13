@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="director" class="form-label">Contacto</label>
-                                    <input type="text" class="form-control" id="director" name="contacto" required>
+                                    <input type="text" class="form-control" id="contacto" name="contacto" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="telefono" class="form-label">Teléfono</label>

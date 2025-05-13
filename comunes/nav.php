@@ -1,6 +1,6 @@
 <div class="mb-4">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="?pagina=principal">Pueblo <span class="text-primary">a Pueblo</span></a>
+        <a class="navbar-brand" href="?pagina=principal">Pueblo a Pueblo</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" 
                 data-target="#navbarNavDropdown" 
                 aria-controls="navbarNavDropdown" aria-expanded="false" 

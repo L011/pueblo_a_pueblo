@@ -3,29 +3,26 @@ if (!is_file("modelo/" . $pagina . ".php")) {
     echo "Falta definir la clase " . $pagina;
     exit;
 }
-var_dump($pagina);
 require_once("modelo/" . $pagina . ".php");
 
 if (is_file("vista/" . $pagina . ".php")) {
     $o = new escuela();
  
     if(!empty($_POST)){
-        var_dump($_POST);
-         
         
         if (isset($_POST['accion'])) {
             $accion = $_POST['accion'];
-            echo $accion;
             } else {
                 $accion = "Error"; // o algún otro valor por defecto
             }
 
        
-        if ($accion == 'consultar') {
-            // Consultar todas las escuelas
-            $escuelas = $o->consultarescuelas();
-            echo json_encode($escuelas);
-        } elseif ($accion == 'obtener') {
+       if ($accion == 'consultar') {
+            $escuelas = $o->consultarEscuelasCompletas();
+            header('Content-Type: application/json');
+            echo json_encode(['data' => $escuelas]);
+            exit;
+        }elseif ($accion == 'obtener') {
             // Obtener datos de una escuela específica
             $o->set_escuelaId($_POST['escuela_id']);
             $escuela = $o->obtenerescuelaPorId();

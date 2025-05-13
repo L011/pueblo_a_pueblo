@@ -110,12 +110,23 @@ class escuela extends Conexion
     }
 
     // Consultar todas las escuelas
-    public function consultarescuelas()
-    {
-        $conexion = $this->conecta();
-        $stmt = $conexion->query("SELECT * FROM escuela ORDER BY nombre");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    public function consultarEscuelasCompletas() {
+    $conexion = $this->conecta();
+    $sql = "SELECT e.escuela_id, e.nombre, e.circuito, e.contacto, e.telefono, 
+                   IFNULL(m.cantidad_alumnos, 0) as matricula
+            FROM escuela e
+            LEFT JOIN (
+                SELECT escuela_id, MAX(fecha_registro) as ultima_fecha
+                FROM matriculaescuela
+                GROUP BY escuela_id
+            ) ultima ON e.escuela_id = ultima.escuela_id
+            LEFT JOIN matriculaescuela m ON m.escuela_id = ultima.escuela_id 
+                                        AND m.fecha_registro = ultima.ultima_fecha
+            ORDER BY e.nombre";
+    
+    $stmt = $conexion->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     // Obtener datos de una escuela específica
     public function obtenerescuelaPorId()

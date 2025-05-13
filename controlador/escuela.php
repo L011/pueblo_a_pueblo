@@ -3,13 +3,14 @@ if (!is_file("modelo/" . $pagina . ".php")) {
     echo "Falta definir la clase " . $pagina;
     exit;
 }
-
+var_dump($pagina);
 require_once("modelo/" . $pagina . ".php");
 
 if (is_file("vista/" . $pagina . ".php")) {
-    $o = new Gestionescuelas();
+    $o = new escuela();
  
     if(!empty($_POST)){
+        var_dump($_POST);
          
         
         if (isset($_POST['accion'])) {
@@ -38,6 +39,7 @@ if (is_file("vista/" . $pagina . ".php")) {
             $o->set_circuito($_POST['circuito']);
             $o->set_Contacto($_POST['contacto']);
             $o->set_telefono($_POST['telefono']);
+            $o->set_matricula($_POST['matricula']);
             echo $o->registrarescuela();
         }
           elseif ($accion == 'modificar') {

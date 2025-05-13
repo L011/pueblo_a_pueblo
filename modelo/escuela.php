@@ -1,7 +1,7 @@
 <?php
 require_once('Conexion.php');
 
-class Gestionescuelas extends Conexion
+class escuela extends Conexion
 {
     private $escuela_id;
     private $nombre;
@@ -9,6 +9,7 @@ class Gestionescuelas extends Conexion
     private $circuito;
     private $contacto;
     private $telefono;
+    private $matricula;
 
 
     // Setters
@@ -36,6 +37,10 @@ class Gestionescuelas extends Conexion
     {
         $this->escuela_id = $valor;
     }
+    public function set_matricula($valor)
+    {
+        $this->matricula = $valor;
+    }   
 
     //getters
     public function get_nombre($valor)
@@ -61,6 +66,9 @@ class Gestionescuelas extends Conexion
     public function get_escuelaId($valor)
     {
         $this->escuela_id = $valor;
+    } public function get_matricula($valor)
+    {
+        $this->matricula = $valor;
     }
 
 
@@ -71,15 +79,27 @@ class Gestionescuelas extends Conexion
         $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
             $stmt = $conexion->prepare("INSERT INTO escuela 
-            (nombre, direccion, circuito, contacto, telefono) 
-            VALUES (:nombre, :direccion, :circuito, :contacto, :telefono)");
+                (nombre, direccion, contacto, circuito, telefono) 
+                VALUES (:nombre, :direccion, :contacto, :circuito, :telefono)");
 
-            $stmt->execute([
-                ':nombre' => $this->nombre,
-                ':direccion' => $this->direccion,
-                ':circuito' => $this->circuito,
-                ':contacto' => $this->contacto,
-                ':telefono' => $this->telefono
+                $stmt->execute([
+                    ':nombre' => $this->nombre,
+                    ':direccion' => $this->direccion,
+                    ':contacto' => $this->contacto,
+                    ':circuito' => $this->circuito,
+                    ':telefono' => $this->telefono
+                ]);
+
+            $escuela_id = $conexion->lastInsertId();
+    
+            // Insertar matrícula
+            $stmtMatricula = $conexion->prepare("INSERT INTO matriculaescuela 
+                (escuela_id, fecha_registro, cantidad_alumnos) 
+                VALUES (:escuela_id, CURDATE(), :cantidad)");
+            
+            $stmtMatricula->execute([
+                ':escuela_id' => $escuela_id,
+                ':cantidad' =>  $this->matricula
             ]);
 
             $respuesta = array('mensaje' => 'Escuela registrada exitosamente');

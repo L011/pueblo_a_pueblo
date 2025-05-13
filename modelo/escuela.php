@@ -6,42 +6,80 @@ class Gestionescuelas extends Conexion
     private $escuela_id;
     private $nombre;
     private $direccion;
+    private $circuito;
     private $contacto;
+    private $telefono;
+
 
     // Setters
-    public function setNombre($valor)
+    public function set_nombre($valor)
     {
         $this->nombre = $valor;
     }
-    public function setDireccion($valor)
+    public function set_direccion($valor)
     {
         $this->direccion = $valor;
     }
-    public function setContactoTelefono($valor)
+    public function set_circuito($valor)
+    {
+        $this->circuito = $valor;
+    }
+    public function set_contacto($valor)
     {
         $this->contacto = $valor;
     }
-    public function setescuelaId($valor)
+    public function set_telefono($valor)
+    {
+        $this->telefono = $valor;
+    }
+    public function set_escuelaId($valor)
     {
         $this->escuela_id = $valor;
     }
-    public funciont {
-        
-        $this ->matrícula;
+
+    //getters
+    public function get_nombre($valor)
+    {
+        $this->nombre = $valor;
     }
+    public function get_direccion($valor)
+    {
+        $this->direccion = $valor;
+    }
+    public function get_circuito($valor)
+    {
+        $this->circuito = $valor;
+    }
+    public function get_contacto($valor)
+    {
+        $this->contacto = $valor;
+    }
+    public function get_telefono($valor)
+    {
+        $this->telefono = $valor;
+    }
+    public function get_escuelaId($valor)
+    {
+        $this->escuela_id = $valor;
+    }
+
+
     // Registrar nueva escuela
     public function registrarescuela()
     {
         $conexion = $this->conecta();
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
             $stmt = $conexion->prepare("INSERT INTO escuela 
-            (nombre, direccion, contacto) 
-            VALUES (:nombre, :direccion, :contacto)");
+            (nombre, direccion, circuito, contacto, telefono) 
+            VALUES (:nombre, :direccion, :circuito, :contacto, :telefono)");
 
             $stmt->execute([
                 ':nombre' => $this->nombre,
                 ':direccion' => $this->direccion,
-                ':contacto' => $this->contacto
+                ':circuito' => $this->circuito,
+                ':contacto' => $this->contacto,
+                ':telefono' => $this->telefono
             ]);
 
             return "escuela registrada exitosamente";

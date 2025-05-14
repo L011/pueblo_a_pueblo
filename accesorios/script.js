@@ -24,6 +24,7 @@ $(document).ready(function () {
             data: { "accion": "consultar" },
             dataSrc: "data",
             success: function(response) {
+                console.log('holaResponse');
              
                 $('#tabla-activas').DataTable({
                     "data": response.data,
@@ -49,7 +50,12 @@ $(document).ready(function () {
                                 `;
                             }
                         }
+/*************  ✨ Windsurf Command 🌟  *************/
                     ],
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+                    },
+/*******  67026dba-821a-4ffb-9763-43aedb458918  *******/
                     
                     "responsive": true
                 });
@@ -81,6 +87,7 @@ $(document).ready(function () {
                 $("#circuito").val(response.circuito);
                 $("#contacto").val(response.contacto);
                 $("#telefono").val(response.telefono);
+                $("#matricula").val(response.matricula);
                 // Scroll al formulario
                 $('html, body').animate({
                     scrollTop: $("#formEscuela").offset().top

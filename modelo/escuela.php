@@ -132,7 +132,17 @@ class escuela extends Conexion
     public function obtenerescuelaPorId()
     {
         $conexion = $this->conecta();
-        $stmt = $conexion->prepare("SELECT * FROM escuela WHERE escuela_id = :id");
+        $sql = "SELECT e.*, IFNULL(m.cantidad_alumnos, 0) as matricula
+                FROM escuela e
+                LEFT JOIN (
+                    SELECT escuela_id, MAX(fecha_registro) as ultima_fecha
+                    FROM matriculaescuela
+                    GROUP BY escuela_id
+                ) ultima ON e.escuela_id = ultima.escuela_id
+                LEFT JOIN matriculaescuela m ON m.escuela_id = ultima.escuela_id 
+                                            AND m.fecha_registro = ultima.ultima_fecha
+                WHERE e.escuela_id = :id";
+        $stmt = $conexion->prepare($sql);
         $stmt->execute([':id' => $this->escuela_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }

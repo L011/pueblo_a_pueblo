@@ -33,7 +33,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Fecha</th>
-                                <th>Proveedor</th>
                                 <th>Categoría</th>
                                 <th>Peso (kg)</th>
                                 <th>Acciones</th>
@@ -87,7 +86,9 @@
                             <div class="col-md-6">
                                 <label class="form-label">Entrega a Distribuir</label>
                                 <select class="form-select" name="entrega_id" id="entrega_id" required>
-                                    <option value="">Seleccionar...</option>
+                                    <option value="">Seleccionar...</option> 
+                                    <option value="">Lote 1</option>
+                                    <option value="">Lote 2</option> 
                                     <!-- Opciones cargadas via AJAX -->
                                 </select>
                             </div>
@@ -96,6 +97,34 @@
                                 <input type="text" class="form-control" id="matricula_total" readonly>
                             </div>
                         </div>
+                        <div class="card mb-3">
+    <div class="card-header bg-light">
+ <!--        -------------------------------------------- Opcional idk----------------------------- -->
+        <h6 class="mb-0"><i class="fas fa-robot me-2"></i>Opciones de Distribución (En proceso opcional idk) </h6>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Método de Distribución </label>
+                <select class="form-select" id="metodo-distribucion">
+                    <option value="proporcional">Proporcional por Matrícula</option>
+                    <option value="equitativo">Equitativo (todas reciben igual)</option>
+                    <option value="personalizado">Personalizado Manual</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Margen de Seguridad (% Guardado para ajustes)</label>
+                <input type="number" class="form-control" id="margen-seguridad" value="5" min="0" max="20">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Peso Mínimo por Escuela (kg)</label>
+                <input type="number" class="form-control" id="peso-minimo" value="0.5" step="0.1" min="0">
+            </div>
+        </div>
+        
+        <!-- Resto de la tabla de distribución... -->
+    </div>
+</div>
 
                         <!-- Sección de distribución automática -->
                         <div class="card mb-3">

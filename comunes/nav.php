@@ -66,13 +66,13 @@
         <!-- Contenido colapsable -->
         <div class="collapse navbar-collapse flex-grow-1" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item escuela" <?php if ($pagina == 'escuela') echo 'style="background-color: #d3d8e4;"'; ?>>
                     <a class="nav-link" href="?pagina=escuela">Escuela</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item distribucion" <?php if ($pagina == 'distribucion') echo 'style="background-color: #d3d8e4;"'; ?>>
                     <a class="nav-link" href="?pagina=distribucion">Distribución</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item inventario" <?php if ($pagina == 'inventario') echo 'style="background-color: #d3d8e4;"'; ?>>
                     <a class="nav-link" href="?pagina=inventario">Inventario</a>
                 </li>
                 
@@ -93,7 +93,14 @@
  
 </div>
 
+<style>
+    .navbar-nav .nav-item .nav-link.active {
+        background-color: #0d6efd;
+        color: white;
+    }
+</style>
 <!-- JS para manejar el toggle en móviles -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggler = document.querySelector('.navbar-toggler');
